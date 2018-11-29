@@ -58,8 +58,35 @@
 (defvar spiderx--license-root-url
   "https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json")
 
-(defvar spiderx--license-details-url
-  "https://raw.githubusercontent.com/spdx/license-list-data/master/json/details/")
+(defvar spiderx--license-json-details-url
+  "https://raw.githubusercontent.com/spdx/license-list-data/master/json/details/%s.json")
+
+(defvar spiderx--license-html-details-url
+  "https://spdx.org/licenses/%s.html")
+
+(defun spiderx-show-license (license-id)
+  "Show the contents of LICENSE-ID."
+  (interactive
+   (list (completing-read "License name: "
+                          (spiderx--get-license-ids)
+                          nil
+                          t)))
+  (let ((buffer (get-buffer-create "*spiderx*"))
+        (inhibit-read-only t)
+        (license-url (format spiderx--license-html-details-url license-id)))
+    (switch-to-buffer buffer)
+    (erase-buffer)
+    (goto-char (point-min))
+    (insert "SPDX Url: ")
+    (insert-text-button license-url
+                        'url license-url
+                        'action (lambda (b) (browse-url (button-get b 'url))))
+    (insert "\n\n")
+    (insert (format "SPX Identifier: %s\n\n" license-id))
+
+    (insert "License Text:\n\n")
+    (insert (spiderx--get-license-text license-id))
+    (goto-char (point-min))))
 
 (defun spiderx-insert-license (license-id)
   "Insert the contents of LICENSE-ID at current point."
@@ -112,7 +139,7 @@
 
 (defun spiderx--get-license-data (license-id)
   "Get the spdx json data for the given LICENSE-ID."
-  (let* ((license-url (concat spiderx--license-details-url license-id ".json"))
+  (let* ((license-url (format spiderx--license-json-details-url license-id))
          (buffer (url-retrieve-synchronously license-url))
          (http-contents (spiderx--http-response-contents-from-and-kill-buffer buffer))
          (license-data (json-read-from-string http-contents)))
