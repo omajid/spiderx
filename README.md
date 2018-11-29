@@ -19,9 +19,11 @@ M-x package-install-file RET spiderx.el RET
 
 This package provides a useful number of features for getting license texts:
 
+- `spiderx-add-license-file` will prompt the user for selecting a license (using a SPDX identifier) and the prompt the user for the file to save the license in.
+
 - `spiderx-insert-license` will prompt the user for selecting a license (using a SPDX identifier) and then insert the license in the current buffer.
-- 
-  `spiderx-add-license-file` will prompt the user for selecting a license (using a SPDX identifier) and the prompt the user for the file to save the license in.
+
+- `spiderx-show-license` will prompt the user for selecting a license (using a SPDX identifier) show the contents and some other information about the license.
 
 ## Authors
 
