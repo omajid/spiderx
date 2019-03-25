@@ -83,7 +83,6 @@
                         'action (lambda (b) (browse-url (button-get b 'url))))
     (insert "\n\n")
     (insert (format "SPX Identifier: %s\n\n" license-id))
-
     (insert "License Text:\n\n")
     (insert (spiderx--get-license-text license-id))
     (goto-char (point-min))))
@@ -146,7 +145,7 @@
     license-data))
 
 (defun spiderx--http-response-contents-from-and-kill-buffer (buffer)
-  "Extract http response body from, and kill, the given BUFFER."
+  "Extract http response body from and kill the given BUFFER."
   (prog2
       (switch-to-buffer buffer)
       (spiderx--http-response-contents)
