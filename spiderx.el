@@ -49,6 +49,7 @@
     ("GPL-2.0" . "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt")
     ("GPL-3.0" . "https://www.gnu.org/licenses/gpl-3.0.txt")
     ("LGPL-2.0" . "https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt")
+    ("LGPL-2.1" . "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt")
     ("LGPL-3.0" . "https://www.gnu.org/licenses/lgpl-3.0.txt")
     ("MPL-1.1" . "https://www.mozilla.org/media/MPL/1.1/index.0c5913925d40.txt")
     ("MPL-2.0" . "https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt")
